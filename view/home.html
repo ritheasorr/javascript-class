@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="../script/api.js"></script>
+    
 </head>
 <body>
     <h1>Home</h1>
-    <input type="text" id="searchInput" placeholder="Search...">
-    <button onclick="search()">Search</button>
+    <form onsubmit="event.preventDefault(); searchTitle(document.getElementById('searchInput').value);">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
 
-    <script src="./script/api.js"></script>
-    <script>
-        function search() {
-            const title = document.getElementById('searchInput').value;
-            searchTitle(title);
-        }
-    </script>
+    <div id="searchResults">
+        <!-- Search results will be displayed here -->
+    </div>
 
-    
 </body>
 </html>
