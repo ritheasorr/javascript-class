@@ -35,7 +35,6 @@ defaultHomePage = (letter) =>  {
         });
 }
 
-
 searchTitle = (title) => {
     fetch('https://imdb.iamidiotareyoutoo.com/search?q=' + encodeURIComponent(title))
         .then(response => response.json())
