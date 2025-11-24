@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Full API Response Test</title>
+    <style>
+        body { font-family: monospace; padding: 20px; background: #1a1a1a; color: #0f0; }
+        pre { background: #000; padding: 20px; border-radius: 8px; overflow-x: auto; }
+        h2 { color: #0ff; }
+    </style>
+</head>
+<body>
+    <h1>Testing Full API Response</h1>
+    <h2>First Movie Object (All Fields):</h2>
+    <pre id="output">Loading...</pre>
+    <h2>All Available Keys:</h2>
+    <pre id="keys">Loading...</pre>
+    <script>
+        fetch('https://imdb.iamidiotareyoutoo.com/search?q=Inception')
+            .then(response => response.json())
+            .then(data => {
+                if (data.description && data.description[0]) {
+                    const movie = data.description[0];
+                    document.getElementById('output').textContent = JSON.stringify(movie, null, 2);
+                    document.getElementById('keys').textContent = 'Available fields:\n' + Object.keys(movie).join('\n');
+                } else {
+                    document.getElementById('output').textContent = 'No movie data found';
+                    document.getElementById('keys').textContent = 'N/A';
+                }
+            })
+            .catch(error => {
+                document.getElementById('output').textContent = 'Error: ' + error.message;
+            });
+    </script>
+</body>
+</html>

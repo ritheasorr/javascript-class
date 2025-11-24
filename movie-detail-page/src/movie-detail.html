@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Detail</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="movie-detail-container">
+        <img id="movie-poster" src="" alt="Movie Poster">
+        <h1 id="movie-title"></h1>
+        <p id="movie-description"></p>
+        <button onclick="goBack()">Go Back</button>
+    </div>
+    <script src="js/movieDetail.js"></script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

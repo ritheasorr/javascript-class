@@ -12,22 +12,45 @@ defaultHomePage = (letter) =>  {
                 return;
             }
 
+            // Cache movies for recommendations
+            let moviePool = JSON.parse(localStorage.getItem('moviePool') || '[]');
+            
             data.description.forEach(movie => {
                 // Only show titles that start with that letter
                 if (movie['#TITLE'] && movie['#TITLE'].toUpperCase().startsWith(letter.toUpperCase())) {
                     const movieDiv = document.createElement('div');
                     movieDiv.classList.add('movie-card');
+                    movieDiv.style.cursor = 'pointer';
 
                     movieDiv.innerHTML = `
                         <img src="${movie['#IMG_POSTER']}" alt="${movie['#TITLE']}" width="120"><br>
                         <h3>${movie['#TITLE']} (${movie['#YEAR'] || 'N/A'})</h3>
                         <p><strong>Actors:</strong> ${movie['#ACTORS'] || 'N/A'}</p>
-                        <a href="${movie['#IMDB_URL']}" target="_blank">IMDB Link</a>
+                        <a href="${movie['#IMDB_URL']}" target="_blank" onclick="event.stopPropagation()">IMDB Link</a>
                     `;
 
+                    // Add click event to navigate to movie detail page
+                    movieDiv.addEventListener('click', () => {
+                        // Store movie data in localStorage
+                        localStorage.setItem('selectedMovie', JSON.stringify(movie));
+                        // Navigate to movie detail page
+                        window.location.href = 'movie-detail.html';
+                    });
+
                     resultsDiv.appendChild(movieDiv);
+                    
+                    // Add to movie pool if not already present
+                    if (!moviePool.some(m => m['#IMDB_ID'] === movie['#IMDB_ID'])) {
+                        moviePool.push(movie);
+                    }
                 }
             });
+            
+            // Keep pool size reasonable (max 100 movies)
+            if (moviePool.length > 100) {
+                moviePool = moviePool.slice(-100);
+            }
+            localStorage.setItem('moviePool', JSON.stringify(moviePool));
         })
         .catch(error => {
             console.error('Error:', error);
@@ -47,17 +70,41 @@ searchTitle = (title) => {
                 return;
             }
 
+            // Cache movies for recommendations
+            let moviePool = JSON.parse(localStorage.getItem('moviePool') || '[]');
+            
             data.description.forEach(movie => {
                 const movieDiv = document.createElement('div');
+                movieDiv.classList.add('movie-card');
+                movieDiv.style.cursor = 'pointer';
                 movieDiv.innerHTML = `
-                    <h3>${movie['#TITLE']} (${movie['#YEAR']})</h3>
                     <img src="${movie['#IMG_POSTER']}" alt="${movie['#TITLE']}" width="120"><br>
-                    <strong>Actors:</strong> ${movie['#ACTORS']}<br>
-                    <a href="${movie['#IMDB_URL']}" target="_blank">IMDB Link</a>
-                    <hr>
+                    <h3>${movie['#TITLE']} (${movie['#YEAR']})</h3>
+                    <p><strong>Actors:</strong> ${movie['#ACTORS']}</p>
+                    <a href="${movie['#IMDB_URL']}" target="_blank" onclick="event.stopPropagation()">IMDB Link</a>
                 `;
+
+                // Add click event to navigate to movie detail page
+                movieDiv.addEventListener('click', () => {
+                    // Store movie data in localStorage
+                    localStorage.setItem('selectedMovie', JSON.stringify(movie));
+                    // Navigate to movie detail page
+                    window.location.href = 'movie-detail.html';
+                });
+
                 resultsDiv.appendChild(movieDiv);
+                
+                // Add to movie pool if not already present
+                if (!moviePool.some(m => m['#IMDB_ID'] === movie['#IMDB_ID'])) {
+                    moviePool.push(movie);
+                }
             });
+            
+            // Keep pool size reasonable (max 100 movies)
+            if (moviePool.length > 100) {
+                moviePool = moviePool.slice(-100);
+            }
+            localStorage.setItem('moviePool', JSON.stringify(moviePool));
         })
         .catch(error => {
             console.error('Error:', error);

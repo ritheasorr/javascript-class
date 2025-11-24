@@ -1,0 +1,292 @@
+/* === Base Reset === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", "Inter", sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    z-index: -1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* === Back Button === */
+.back-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 12px 24px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.back-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateX(-5px);
+}
+
+/* === Movie Detail Container === */
+.movie-detail-container {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    display: flex;
+    gap: 40px;
+    padding: 40px;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* === Movie Poster === */
+.movie-poster {
+    flex-shrink: 0;
+}
+
+.movie-poster img {
+    width: 350px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.movie-poster img:hover {
+    transform: scale(1.02);
+}
+
+/* === Movie Info === */
+.movie-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#movieTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.movie-year {
+    font-size: 1.2rem;
+    color: #6b7280;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.movie-rating {
+    font-size: 1.4rem;
+    color: #fbbf24;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* === Info Sections === */
+.info-section {
+    background-color: rgba(249, 250, 251, 0.6);
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid #6b7280;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.info-section h3 {
+    font-size: 1.2rem;
+    color: #374151;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.info-section p {
+    font-size: 1rem;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+/* === External Links === */
+.external-links {
+    margin-top: 20px;
+}
+
+.imdb-btn {
+    display: inline-block;
+    background-color: #f5c518;
+    color: #000;
+    text-decoration: none;
+    padding: 14px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(245, 197, 24, 0.4);
+}
+
+.imdb-btn:hover {
+    background-color: #f4d03f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(245, 197, 24, 0.6);
+}
+
+/* === Responsive Design === */
+@media (max-width: 768px) {
+    .movie-detail-container {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+    
+    .movie-poster img {
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+        display: block;
+    }
+    
+    #movieTitle {
+        font-size: 2rem;
+    }
+    
+    .back-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    #movieTitle {
+        font-size: 1.5rem;
+    }
+    
+    .movie-year {
+        font-size: 1rem;
+    }
+    
+    .info-section h3 {
+        font-size: 1rem;
+    }
+}
+
+/* === Recommendations Section === */
+.recommendations-section {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.recommendations-section h2 {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 25px;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.recommendation-card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.recommendation-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.recommendation-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.rec-info {
+    padding: 15px;
+}
+
+.rec-info h4 {
+    font-size: 1rem;
+    color: #1f2937;
+    margin-bottom: 8px;
+    font-weight: 600;
+    line-height: 1.3;
+    min-height: 40px;
+}
+
+.rec-year {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.rec-match {
+    font-size: 0.9rem;
+    color: #059669;
+    font-weight: 600;
+    background-color: rgba(16, 185, 129, 0.1);
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+.no-recommendations {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    padding: 40px 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+@media (max-width: 768px) {
+    .recommendations-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    
+    .recommendation-card img {
+        height: 220px;
+    }
+    
+    .recommendations-section h2 {
+        font-size: 1.5rem;
+    }
+}

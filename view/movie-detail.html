@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+    <link rel="stylesheet" href="movie-detail.css">
+</head>
+<body>
+    <div class="container">
+        <button class="back-btn" onclick="window.history.back()">← Back to Home</button>
+        
+        <div class="movie-detail-container">
+            <div class="movie-poster">
+                <img id="posterImg" src="" alt="Movie Poster">
+            </div>
+            
+            <div class="movie-info">
+                <h1 id="movieTitle"></h1>
+                <p class="movie-year" id="movieYear"></p>
+                <p class="movie-rating" id="movieRating"></p>
+                
+                <div class="info-section">
+                    <h3>Genre</h3>
+                    <p id="movieGenre">Loading...</p>
+                </div>
+                
+                <div class="info-section">
+                    <h3>Duration</h3>
+                    <p id="movieDuration">Loading...</p>
+                </div>
+                
+                <div class="info-section">
+                    <h3>Storyline</h3>
+                    <p id="movieStoryline">Loading...</p>
+                </div>
+                
+                <div class="info-section">
+                    <h3>Cast</h3>
+                    <p id="movieActors"></p>
+                </div>
+                
+                <div class="info-section">
+                    <h3>Language</h3>
+                    <p id="movieLanguage">Loading...</p>
+                </div>
+                
+                <div class="info-section">
+                    <h3>Awards</h3>
+                    <p id="movieAwards">Loading...</p>
+                </div>
+                
+                <div class="info-section">
+                    <h3>Ranking</h3>
+                    <p id="movieRank"></p>
+                </div>
+                
+                <div class="info-section">
+                    <h3>IMDb ID</h3>
+                    <p id="movieImdbId"></p>
+                </div>
+                
+                <div class="external-links">
+                    <a id="imdbLink" href="" target="_blank" class="imdb-btn">View on IMDb</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Recommendations Section -->
+        <div id="recommendations" class="recommendations-section">
+            <!-- Recommendations will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <script src="../script/movie-detail.js"></script>
+</body>
+</html>

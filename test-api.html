@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+</head>
+<body>
+    <h1>Testing API Response</h1>
+    <pre id="output"></pre>
+    <script>
+        fetch('https://imdb.iamidiotareyoutoo.com/search?q=A')
+            .then(response => response.json())
+            .then(data => {
+                if (data.description && data.description[0]) {
+                    document.getElementById('output').textContent = JSON.stringify(data.description[0], null, 2);
+                }
+            });
+    </script>
+</body>
+</html>
