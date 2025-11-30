@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home - MovieFinder</title>
     <script src="../script/api.js"></script>
+    <script src="../script/theme-toggle.js"></script>
     <link rel="stylesheet" href="home.css">
-
-    
+    <link rel="stylesheet" href="theme-toggle.css">
 </head>
-<body onload = "defaultHomePage('A')">
+<body onload="defaultHomePage('A')">
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </button>
+
     <h1>Home</h1>
     <form onsubmit="event.preventDefault(); searchTitle(document.getElementById('searchInput').value);">
         <input type="text" id="searchInput" placeholder="Search...">
@@ -19,6 +26,5 @@
     <div id="searchResults">
         <!-- Search results will be displayed here -->
     </div>
-
 </body>
 </html>

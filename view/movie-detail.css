@@ -6,11 +6,55 @@
     font-family: "Poppins", "Inter", sans-serif;
 }
 
+/* === Theme Variables === */
+:root {
+ --overlay-bg: rgba(255, 255, 255, 0.05);
+    --container-bg: rgba(255, 255, 255, 0.85);
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --text-tertiary: #4b5563;
+    --info-section-bg: rgba(249, 250, 251, 0.6);
+    --info-section-border: #6b7280;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --button-bg: rgba(255, 255, 255, 0.2);
+    --button-border: rgba(255, 255, 255, 0.3);
+    --button-text: white;
+    --rec-title-color: white;
+    --no-rec-bg: rgba(255, 255, 255, 0.1);
+    --no-rec-text: rgba(255, 255, 255, 0.8);
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-medium: rgba(0, 0, 0, 0.2);
+    --shadow-heavy: rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] {
+    --bg-gradient-start: #0f172a;
+    --bg-gradient-end: #1e293b;
+    --overlay-bg: rgba(0, 0, 0, 0.3);
+    --container-bg: rgba(30, 41, 59, 0.95);
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-tertiary: #94a3b8;
+    --info-section-bg: rgba(51, 65, 85, 0.6);
+    --info-section-border: #3b82f6;
+    --card-bg: rgba(30, 41, 59, 0.95);
+    --button-bg: rgba(51, 65, 85, 0.8);
+    --button-border: rgba(148, 163, 184, 0.3);
+    --button-text: #e2e8f0;
+    --rec-title-color: #f1f5f9;
+    --no-rec-bg: rgba(51, 65, 85, 0.5);
+    --no-rec-text: rgba(226, 232, 240, 0.8);
+    --shadow-light: rgba(0, 0, 0, 0.3);
+    --shadow-medium: rgba(0, 0, 0, 0.5);
+    --shadow-heavy: rgba(0, 0, 0, 0.7);
+}
+
 body {
-    background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
     min-height: 100vh;
     padding: 20px;
     position: relative;
+    transition: background 0.3s ease;
 }
 
 body::before {
@@ -20,9 +64,10 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--overlay-bg);
     backdrop-filter: blur(10px);
     z-index: -1;
+    transition: background 0.3s ease;
 }
 
 .container {
@@ -32,9 +77,9 @@ body::before {
 
 /* === Back Button === */
 .back-btn {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: 2px solid var(--button-border);
     padding: 12px 24px;
     font-size: 1rem;
     cursor: pointer;
@@ -49,17 +94,26 @@ body::before {
     transform: translateX(-5px);
 }
 
+[data-theme="dark"] .back-btn:hover {
+    background-color: rgba(51, 65, 85, 1);
+}
+
 /* === Movie Detail Container === */
 .movie-detail-container {
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: var(--container-bg);
     border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 20px 60px var(--shadow-heavy);
     overflow: hidden;
     display: flex;
     gap: 40px;
     padding: 40px;
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .movie-detail-container {
+    border: 1px solid rgba(148, 163, 184, 0.2);
 }
 
 /* === Movie Poster === */
@@ -71,7 +125,7 @@ body::before {
     width: 350px;
     height: auto;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 30px var(--shadow-medium);
     transition: transform 0.3s ease;
 }
 
@@ -90,16 +144,18 @@ body::before {
 #movieTitle {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #1f2937;
+    color: var(--text-primary);
     margin-bottom: 10px;
     line-height: 1.2;
+    transition: color 0.3s ease;
 }
 
 .movie-year {
     font-size: 1.2rem;
-    color: #6b7280;
+    color: var(--text-secondary);
     font-weight: 500;
     margin-bottom: 10px;
+    transition: color 0.3s ease;
 }
 
 .movie-rating {
@@ -107,30 +163,33 @@ body::before {
     color: #fbbf24;
     font-weight: 700;
     margin-bottom: 20px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 2px 4px var(--shadow-medium);
 }
 
 /* === Info Sections === */
 .info-section {
-    background-color: rgba(249, 250, 251, 0.6);
+    background-color: var(--info-section-bg);
     padding: 20px;
     border-radius: 12px;
-    border-left: 4px solid #6b7280;
+    border-left: 4px solid var(--info-section-border);
     backdrop-filter: blur(10px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px var(--shadow-light);
+    transition: all 0.3s ease;
 }
 
 .info-section h3 {
     font-size: 1.2rem;
-    color: #374151;
+    color: var(--text-primary);
     margin-bottom: 10px;
     font-weight: 600;
+    transition: color 0.3s ease;
 }
 
 .info-section p {
     font-size: 1rem;
-    color: #4b5563;
+    color: var(--text-tertiary);
     line-height: 1.6;
+    transition: color 0.3s ease;
 }
 
 /* === External Links === */
@@ -199,15 +258,17 @@ body::before {
 .recommendations-section {
     margin-top: 50px;
     padding-top: 30px;
-    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid var(--button-border);
+    transition: border-color 0.3s ease;
 }
 
 .recommendations-section h2 {
     font-size: 2rem;
-    color: white;
+    color: var(--rec-title-color);
     margin-bottom: 25px;
     text-align: center;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 4px var(--shadow-medium);
+    transition: color 0.3s ease;
 }
 
 .recommendations-grid {
@@ -217,24 +278,26 @@ body::before {
 }
 
 .recommendation-card {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px var(--shadow-medium);
     backdrop-filter: blur(10px);
+    cursor: pointer;
 }
 
 .recommendation-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 20px var(--shadow-medium);
 }
 
 .recommendation-card img {
     width: 100%;
     height: 280px;
     object-fit: cover;
-    border-bottom: 2px solid #e5e7eb;
+    border-bottom: 2px solid var(--text-secondary);
+    transition: border-color 0.3s ease;
 }
 
 .rec-info {
@@ -243,17 +306,19 @@ body::before {
 
 .rec-info h4 {
     font-size: 1rem;
-    color: #1f2937;
+    color: var(--text-primary);
     margin-bottom: 8px;
     font-weight: 600;
     line-height: 1.3;
     min-height: 40px;
+    transition: color 0.3s ease;
 }
 
 .rec-year {
     font-size: 0.85rem;
-    color: #6b7280;
+    color: var(--text-secondary);
     margin-bottom: 8px;
+    transition: color 0.3s ease;
 }
 
 .rec-match {
@@ -266,14 +331,20 @@ body::before {
     display: inline-block;
 }
 
+[data-theme="dark"] .rec-match {
+    color: #10b981;
+    background-color: rgba(16, 185, 129, 0.2);
+}
+
 .no-recommendations {
     text-align: center;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--no-rec-text);
     font-size: 1.1rem;
     padding: 40px 20px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--no-rec-bg);
     border-radius: 12px;
     backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
 }
 
 @media (max-width: 768px) {
