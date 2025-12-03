@@ -18,7 +18,7 @@
     --card-bg: rgba(255, 255, 255, 0.9);
     --button-bg: rgba(255, 255, 255, 0.2);
     --button-border: rgba(255, 255, 255, 0.3);
-    --button-text: white;
+    --button-text: black;
     --rec-title-color: white;
     --no-rec-bg: rgba(255, 255, 255, 0.1);
     --no-rec-text: rgba(255, 255, 255, 0.8);
@@ -87,6 +87,7 @@ body::before {
     margin-bottom: 30px;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px var(--shadow-light);
 }
 
 .back-btn:hover {
